@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outils IA pour l'Éducation - Guide Complet</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Corps */
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #c9e4ff 0%, #f7e0ff 100%);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Conteneur principal */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 12px 36px rgba(85, 50, 150, 0.2);
+      overflow: hidden;
+    }
+
+    /* En-tête */
+    .header {
+      background: linear-gradient(135deg, #5f27cd 0%, #00cec9 100%);
+      color: #ffffff;
+      padding: 30px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 1.9em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header p { font-size: 1.05em; opacity: 0.95; }
+
+    /* Contenu */
+    .content { padding: 30px; }
+    .section { margin-bottom: 30px; }
+
+    .section-title {
+      background: linear-gradient(135deg, #00b894 0%, #0984e3 100%);
+      color: #ffffff;
+      padding: 15px 20px;
+      font-size: 1.25em;
+      font-weight: 700;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    /* Accordéons */
+    .accordion {
+      background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+      color: #ffffff;
+      cursor: pointer;
+      padding: 18px 20px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 12px rgba(108,92,231,0.3);
+      position: relative;
+    }
+    .accordion::after {
+      content: '▼';
+      position: absolute;
+      right: 20px;
+      transition: transform 0.3s ease;
+    }
+    .accordion.active::after { transform: rotate(180deg); }
+    .accordion:hover, .accordion.active {
+      background: linear-gradient(135deg, #4834d4 0%, #686de0 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108,92,231,0.4);
+    }
+
+    /* Panneaux */
+    .panel {
+      display: none;
+      padding: 25px;
+      background: linear-gradient(135deg, #ecf0f1 0%, #f9fbfc 100%);
+      border: 2px solid #dfe6e9;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 8px;
+      animation: slideDown 0.3s ease-in-out;
+    }
+    .panel.show { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Items d’outil */
+    .tool-item {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-left: 6px solid #00cec9;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .tool-item:hover { transform: scale(1.01); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+    .tool-name { font-size: 1.2em; font-weight: 700; color: #0984e3; margin-bottom: 8px; }
+    .tool-description { color: #555; margin-bottom: 10px; }
+
+    /* Caractéristiques */
+    .tool-features {
+      background: #f1f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .tool-features h4 { color: #4834d4; margin-bottom: 8px; font-size: 1em; }
+    .tool-features ul { margin-left: 20px; color: #333; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      background: #4CAF50;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      margin-right: 8px;
+      margin-bottom: 5px;
+    }
+    .badge.premium { background: #e17055; }
+    .badge.free { background: #00b894; }
+    .badge.france { background: #0984e3; }
+    .badge.no-account-badge { background: #6c5ce7; }
+
+    /* Blocs info/avertissement */
+    .no-account {
+      background: #dfe6e9;
+      border-left: 6px solid #00b894;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .no-account h3 { color: #0984e3; margin-bottom: 8px; }
+    .warning {
+      background: #fff1f2;
+      border-left: 5px solid #e17055;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-top: 12px;
+      color: #d63031;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .header h1 { font-size: 1.4em; white-space: normal; }
+      .accordion { font-size: 14px; padding: 14px; }
+      .tool-item { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🤖 Guide d'applications d'IA génératives pour les enseignants</h1>
+      <p>Découvrez les meilleures solutions d'intelligence artificielle pour l'enseignement</p>
+    </div>
+
+    <div class="content">
+      <div class="no-account">
+        <h3>🚀 Outils testables sans création de compte</h3>
+        <p>Ces outils sont parfaits pour débuter et tester en classe sans contrainte d'inscription. Ils offrent une prise en main immédiate.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🎯 Outils accessibles sans compte</div>
+
+        <button class="accordion">Générer du texte et des images</button>
+        <div class="panel">
+          <!-- Vittascience retiré ici dans l’original -->
+        </div>
+
+        <button class="accordion">Recherche et sources fiables</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Perplexity AI <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Moteur de recherche conversationnel qui cite ses sources, idéal pour la vérification d'informations.</div>
+            <div class="tool-features>
+              <h4>Avantages :</h4>
+              <ul>
+                <li>Réponses sourcées et vérifiables</li>
+                <li>Interface conversationnelle intuitive</li>
+                <li>Absence de publicité invasive</li>
+                <li>Synthèse automatique des résultats de recherche</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Moteurs de recherche respectueux de la vie privée</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Qwant IA <span class="badge france">🇫🇷 France</span> <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Moteur de recherche français intégrant l'IA, axé sur le respect de la vie privée.</div>
+            <div class="tool-features">
+              <h4>Nouvelles fonctionnalités :</h4>
+              <ul>
+                <li>Réponses concises et précises générées par l'IA</li>
+                <li>Fonction "Résumé" de pages web</li>
+                <li>Respect strict de la vie privée des utilisateurs</li>
+                <li>Interface entièrement en français</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">DuckDuckGo IA <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Moteur de recherche privé avec une assistance IA intégrée.</div>
+            <div class="tool-features">
+              <h4>Caractéristiques :</h4>
+              <ul>
+                <li>Aucun suivi des utilisateurs</li>
+                <li>Réponses enrichies par l'IA</li>
+                <li>Interface épurée et facile d'utilisation</li>
+                <li>Recherche anonyme pour une meilleure confidentialité</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Correction et amélioration de texte</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Scribens <span class="badge france">🇫🇷 France</span> <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Correcteur orthographique et grammatical avancé, spécifiquement conçu pour le français.</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités :</h4>
+              <ul>
+                <li>Correction orthographique et grammaticale de haut niveau</li>
+                <li>Suggestions de reformulation de phrases</li>
+                <li>Analyse stylistique pour améliorer la qualité d'écriture</li>
+                <li>Spécialisé et optimisé pour la langue française</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Comparaison de modèles IA</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">ComparIA <span class="badge france">🇫🇷 Ministère Culture</span> <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">ComparIA est un outil gratuit qui permet de sensibiliser les citoyens à l’IA générative et à ses enjeux.</div>
+            <div class="tool-features">
+              <h4>Objectifs pédagogiques :</h4>
+              <ul>
+                <li>Comparaison des réponses de différentes IA</li>
+                <li>Sensibilisation à l'impact environnemental de l'IA</li>
+                <li>Analyse des biais culturels et linguistiques présents dans les IA</li>
+                <li>Suggestions de "prompts" (instructions) à visée éducative</li>
+                <li>Formation à la citoyenneté numérique face aux IA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Génération vocale</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">TTS Maker <span class="badge free">Gratuit</span> <span class="badge no-account-badge">Sans compte</span></div>
+            <div class="tool-description">Outil de synthèse vocale simple et efficace pour convertir du texte en audio.</div>
+            <div class="tool-features">
+              <h4>Utilisation :</h4>
+              <ul>
+                <li>Conversion de texte en voix naturelle</li>
+                <li>Large choix de voix disponibles</li>
+                <li>Idéal pour l'accessibilité des contenus éducatifs</li>
+                <li>Création rapide de podcasts ou de narrations éducatives</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">OpenAI.fm <span class="badge free">Gratuit</span> <span class="badge no-account-badge">Sans compte</span></div>
+            <div class="tool-description">Une alternative gratuite pour la synthèse vocale, offrant une interface simple.</div>
+            <div class="tool-features">
+              <h4>Caractéristiques :</h4>
+              <ul>
+                <li>Génération de voix à partir de texte</li>
+                <li>Utilisation sans inscription</li>
+                <li>Idéal pour des besoins ponctuels</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Génération d'images sans compte (Perchance ajouté) -->
+        <button class="accordion">Génération d’images (sans création de compte)</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Canva IA <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Suite complète pour les créations visuelles éducatives, intégrant des outils IA.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Ideogram <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Spécialisé dans la génération d'images avec du texte intégré de haute qualité.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Crayon <span class="badge free">Gratuit</span> <span class="badge no-account-badge">Sans compte</span></div>
+            <div class="tool-description">Génération simple d'illustrations stylisées à partir de descriptions textuelles.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Perchance AI Text-to-Image Generator
+              <span class="badge free">Gratuit</span>
+              <span class="badge no-account-badge">Sans compte</span>
+            </div>
+            <div class="tool-description">Générateur d’images en ligne permettant de créer des visuels à partir d’une description, sans inscription.</div>
+            <div class="tool-features">
+              <h4>Atouts pédagogiques :</h4>
+              <ul>
+                <li>Création instantanée d’images à partir de texte</li>
+                <li>Utile pour illustrer rapidement des notions (sciences, arts, histoire…)</li>
+                <li>Interface simple à prendre en main</li>
+                <li>Accessible sur ordinateur/tablette</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <strong>Lien :</strong>
+              <a href="https://perchance.org/ai-text-to-image-generator" target="_blank" rel="noopener noreferrer" style="color:#0984e3; text-decoration: underline;">
+                https://perchance.org/ai-text-to-image-generator
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outils avec compte -->
+      <div class="no-account">
+        <h3>🔐 Outils avec création de compte</h3>
+        <p>Il est préférable d'avoir une adresse mail dédiée pour ne pas utiliser son adresse personnelle ou professionnelle.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🎓 Modèles de langage principaux</div>
+
+        <button class="accordion">Modèles français et multimodaux</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Mistral IA <span class="badge france">🇫🇷 France</span> <span class="badge free">Freemium</span> <span class="badge">Frugal</span></div>
+            <div class="tool-description">Modèle français open source, multimodal et conforme au RGPD.</div>
+            <div class="tool-features">
+              <h4>Caractéristiques :</h4>
+              <ul>
+                <li>Traitement du texte et des images (multimodal)</li>
+                <li>Performances excellentes en français et multilingue</li>
+                <li>Code source ouvert pour une transparence accrue</li>
+                <li>Respect des normes européennes de protection des données</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Modèles spécialisés</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Claude (Anthropic) <span class="badge free">Freemium</span> <span class="badge">Frugal</span></div>
+            <div class="tool-description">Excellent pour la rédaction, l'analyse de documents et le codage.</div>
+            <div class="tool-features">
+              <h4>Points forts :</h4>
+              <ul>
+                <li>Capacité d'analyse de documents longs</li>
+                <li>Rédaction structurée et claire</li>
+                <li>Aide à la programmation et au débogage</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">ChatGPT (OpenAI) <span class="badge free">Freemium</span> <span class="badge">Frugal</span></div>
+            <div class="tool-description">Le modèle d'IA le plus connu, multimodal et très polyvalent.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Gemini (Google) <span class="badge free">Freemium</span> <span class="badge">Moyennement frugal à pas frugal</span></div>
+            <div class="tool-description">Modèle multimodal de Google, conçu pour la compréhension et la génération de contenu complexe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">💡 Outils pour mieux comprendre l'IA</div>
+        <button class="accordion">Découverte et apprentissage de l'IA</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">NOVAPEDA <span class="badge free">Gratuit</span> <span class="badge">Open-Source</span></div>
+            <div class="tool-description">Une solution 100% open-source qui propose des outils pour mieux cerner l'IA dans l'éducation.</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités :</h4>
+              <ul>
+                <li>Ressources pédagogiques sur l'IA</li>
+                <li>Outils interactifs</li>
+                <li>Approche transparente et open-source</li>
+              </ul>
+            </div>
+             <div class="warning">
+              <strong>Lien :</strong> <a href="https://novapeda.eu/" target="_blank" rel="noopener noreferrer" style="color:#0984e3; text-decoration: underline;">https://novapeda.eu/</a>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Vittascience <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Plateforme éducative sur LLM, réseaux de neurones et consommation énergétique des IA.</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités :</h4>
+              <ul>
+                <li>Explications interactives</li>
+                <li>Simulations</li>
+                <li>Analyses de l'impact énergétique</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <strong>Lien :</strong> <a href="https://fr.vittascience.com/" target="_blank" rel="noopener noreferrer" style="color:#0984e3; text-decoration: underline;">https://fr.vittascience.com/</a>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Activités pédagogiques pour mieux comprendre les biais</div>
+            <div class="tool-description">Activités conçues pour sensibiliser et faire comprendre les biais dans l'IA.</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités :</h4>
+              <ul>
+                <li>Ressources pour identifier les biais</li>
+                <li>Exemples concrets</li>
+                <li>Supports d’ateliers</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <strong>Lien :</strong> <a href="https://mi.hepl.ch/projects/ia/ia.html" target="_blank" rel="noopener noreferrer" style="color:#0984e3; text-decoration: underline;">https://mi.hepl.ch/projects/ia/ia.html</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">🛠️ Outils spécialisés pour l'éducation</div>
+
+        <button class="accordion">Outils tout-en-un</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">MagicSchool IA <span class="badge premium">Freemium</span></div>
+            <div class="tool-description">Un véritable couteau suisse pédagogique (40+ fonctions IA).</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités pour enseignants :</h4>
+              <ul>
+                <li>Création de QCM automatiques</li>
+                <li>Différenciation pédagogique</li>
+                <li>Rédaction assistée de lettres aux parents</li>
+                <li>Planification de cours</li>
+                <li>Outils d'évaluation et de feedback pour les élèves</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Analyse et synthèse de documents</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">NotebookLM (Google) <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Analyse de documents, résumés, podcasts et cartes mentales.</div>
+            <div class="tool-features">
+              <h4>Capacités avancées :</h4>
+              <ul>
+                <li>Import Docs, PDF, présentations, URLs</li>
+                <li>Résumés intelligents</li>
+                <li>Podcasts automatiques</li>
+                <li>Cartes mentales</li>
+              </ul>
+            </div>
+            <div class="warning"><strong>Exemples disponibles :</strong> Podcasts Spotify et éthique IA</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">ChatPDF <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Interrogez vos documents PDF comme si vous discutiez avec un assistant.</div>
+            <div class="tool-features">
+              <h4>Utilisation :</h4>
+              <ul>
+                <li>Téléchargement facile</li>
+                <li>Questions en langage naturel</li>
+                <li>Citations précises</li>
+                <li>Résumés automatiques</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Présentations et supports visuels</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Canva IA <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Suite visuelle : affiches, schémas, diaporamas, modèles éducatifs, collaboration.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Gamma <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Présentations interactives générées par IA, responsive, export, collaboration.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Création d'activités pédagogiques</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Quiz Wizard <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Génération rapide de quiz, QCM et flashcards.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Wooflash (Correlyce) <span class="badge free">Intégré</span></div>
+            <div class="tool-description">Création/partage d'activités avec suivi des résultats; connexion Atrium.</div>
+            <div class="tool-features">
+              <h4>Deux modes de création :</h4>
+              <ul>
+                <li><strong>Mode IA :</strong> Génération à partir de liens YouTube, de documents, etc.</li>
+                <li><strong>Mode manuel :</strong> Saisie de vos propres données et questions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="accordion">Chatbots pédagogiques</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Mizou Chatbot <span class="badge france">🇫🇷 France</span> <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Création simple de chatbots éducatifs respectueux de la confidentialité.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Cartes mentales et visualisation</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Markmap <span class="badge free">Gratuit</span></div>
+            <div class="tool-description">Générateur de cartes mentales interactives basé sur Markdown.</div>
+            <div class="tool-features">
+              <h4>Utilisation avec ChatGPT :</h4>
+              <ul>
+                <li>Prompt : "Écris en Markdown une carte mentale sur [sujet]"</li>
+                <li>Exportation possible</li>
+                <li>Navigation fluide</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Napkin <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Automatisation de la création de graphiques et de visuels éducatifs.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Génération d'images</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Canva IA <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Suite complète pour la création visuelle avec IA.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Ideogram <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Texte intégré net pour affiches, titres et logos.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Crayon <span class="badge free">Gratuit</span> <span class="badge no-account-badge">Sans compte</span></div>
+            <div class="tool-description">Illustrations stylisées à partir de descriptions textuelles.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Correction de copies</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Ed.ai <span class="badge premium">En test</span></div>
+            <div class="tool-description">Plateforme de correction automatisée de copies en cours d'expérimentation.</div>
+            <div class="tool-features">
+              <h4>Statut actuel :</h4>
+              <ul>
+                <li>Expérimentation prévue dans l'académie de Nice</li>
+                <li>Correction automatisée assistée par IA</li>
+                <li>Feedback personnalisé pour les élèves</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <strong>⚠️ Important :</strong> La correction automatique reste complexe et n'est pas encore préconisée de manière généralisée.
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Examino <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Correction rapide de copies manuscrites, notes et appréciations détaillées.</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Logbook <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Webapp d’assistance à la correction, centrée sur des feedbacks oraux.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Génération de musique et vidéo</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">Suno AI <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Création de morceaux originaux à partir de descriptions textuelles.</div>
+            <div class="warning">
+              <strong>Exemple :</strong> Chanson sur les saisons pour l'école primaire
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Vidnoz <span class="badge free">Freemium</span></div>
+            <div class="tool-description">Capsules vidéo pédagogiques (avatars, voix synthétiques, sous-titres).</div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-name">Kling AI <span class="badge free">Crédits limités</span></div>
+            <div class="tool-description">Génération de vidéos réalistes à partir de texte ou d'images.</div>
+          </div>
+        </div>
+
+        <button class="accordion">Générer des pages web</button>
+        <div class="panel">
+          <div class="tool-item">
+            <div class="tool-name">CréeIAppli <span class="badge free">Open-Source</span></div>
+            <div class="tool-description">Obtenir une appli "web" (mini-site) fonctionnant même hors connexion, publiable.</div>
+            <div class="tool-features">
+              <h4>Fonctionnalités :</h4>
+              <ul>
+                <li>Création rapide de mini-sites web</li>
+                <li>Fonctionne hors connexion</li>
+                <li>Possibilité de mise en ligne</li>
+                <li>Solution 100% open-source</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <strong>Lien :</strong> <a href="https://bidouiage.forge.apps.education.fr/creiappli/" target="_blank" rel="noopener noreferrer" style="color:#0984e3; text-decoration: underline;">https://bidouiage.forge.apps.education.fr/creiappli/</a>
+            </div>
+            <p style="margin-top: 12px; font-style: italic; color: #555;">En résumé, de nombreux autres outils non open source proposent cette fonctionnalité (ex: ChatGPT, Claude, Canva, etc.).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning">
+        <strong>Attention :</strong> L'intelligence artificielle est un domaine en évolution très rapide. Cette liste d'outils est susceptible d'évoluer rapidement. Il est recommandé de rester informé des dernières avancées.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Accordéons
+    const accordions = document.querySelectorAll(".accordion");
+    accordions.forEach(acc => {
+      acc.addEventListener("click", function() {
+        // Ferme les autres
+        accordions.forEach(btn => {
+          if (btn !== this) {
+            btn.classList.remove("active");
+            const otherPanel = btn.nextElementSibling;
+            otherPanel.classList.remove("show");
+            otherPanel.style.display = "none";
+          }
+        });
+        // Bascule l’actuel
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.classList.remove("show");
+          setTimeout(() => { panel.style.display = "none"; }, 250);
+        } else {
+          panel.style.display = "block";
+          panel.classList.add("show");
+        }
+      });
+
+      // Accessibilité clavier
+      acc.setAttribute("tabindex", "0");
+      acc.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") acc.click();
+      });
+    });
+  </script>
+</body>
+</html>
