@@ -261,39 +261,33 @@
                     <span>🔐 C. Les grands modèles de languages (Nécessitant un compte)</span>
                     <svg class="arrow-icon w-6 h-6 transform transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div id="content-c" class="accordion-content hidden p-5 space-y-6 border-t border-orange-200">
+                <div id="content-c" class="accordion-content hidden p-5 space-y-4 border-t border-orange-200">
 
-                    <!-- Sous-catégorie 1: Modèles de langage principaux -->
-                    <div class="nested-accordion-item">
-                        <button class="nested-accordion-header w-full flex justify-between items-center p-3 font-semibold text-lg text-indigo-800 bg-orange-100 rounded-lg hover:bg-orange-200 focus:outline-none" aria-expanded="false" aria-controls="sub-content-c1">
-                            <span>🎓 Modèles de langage principaux</span>
-                            <svg class="nested-arrow-icon w-5 h-5 transform transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div id="sub-content-c1" class="nested-accordion-content hidden pt-3 pl-4 space-y-4">
-                            <!-- Outil: Mistral IA -->
-                            <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
-                                <h4 class="text-lg font-bold text-orange-800 mb-1">Mistral IA 🇫🇷 <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
-                                <p class="text-sm mb-2">Modèle open source, multimodal, le plus conforme au RGPD. Excellente performance en français, respect de la confidentialité.</p>
-                                <a href="https://mistral.ai" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
-                            </div>
-                            <!-- Outil: Claude (Anthropic) -->
-                            <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
-                                <h4 class="text-lg font-bold text-orange-800 mb-1">Claude (Anthropic) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
-                                <p class="text-sm mb-2">Excellent pour la rédaction, l’analyse de documents et la programmation. Gère les longues conversations et offre une interface claire.</p>
-                                <a href="https://claude.ai" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
-                            </div>
-                            <!-- Outil: ChatGPT (OpenAI) -->
-                            <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
-                                <h4 class="text-lg font-bold text-orange-800 mb-1">ChatGPT (OpenAI) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
-                                <p class="text-sm mb-2">Modèle multimodal très polyvalent, doté d’une communauté active. Version gratuite limitée, version payante plus puissante.</p>
-                                <a href="https://chat.openai.com" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
-                            </div>
-                            <!-- Outil: Gemini (Google) -->
-                            <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
-                                <h4 class="text-lg font-bold text-orange-800 mb-1">Gemini (Google) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
-                                <p class="text-sm mb-2">Modèle multimodal (texte, image, audio, vidéo). Idéal pour la synthèse complexe et l’intégration dans l’écosystème Google.</p>
-                                <a href="https://gemini.google.com" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
-                            </div>
+                    <!-- Contenu direct de la catégorie C (Anciennement sub-content-c1) -->
+                    <div class="space-y-4">
+                        <!-- Outil: Mistral IA -->
+                        <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
+                            <h4 class="text-lg font-bold text-orange-800 mb-1">Mistral IA 🇫🇷 <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
+                            <p class="text-sm mb-2">Modèle open source, multimodal, le plus conforme au RGPD. Excellente performance en français, respect de la confidentialité.</p>
+                            <a href="https://mistral.ai" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
+                        </div>
+                        <!-- Outil: Claude (Anthropic) -->
+                        <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
+                            <h4 class="text-lg font-bold text-orange-800 mb-1">Claude (Anthropic) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
+                            <p class="text-sm mb-2">Excellent pour la rédaction, l’analyse de documents et la programmation. Gère les longues conversations et offre une interface claire.</p>
+                            <a href="https://claude.ai" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
+                        </div>
+                        <!-- Outil: ChatGPT (OpenAI) -->
+                        <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
+                            <h4 class="text-lg font-bold text-orange-800 mb-1">ChatGPT (OpenAI) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
+                            <p class="text-sm mb-2">Modèle multimodal très polyvalent, doté d’une communauté active. Version gratuite limitée, version payante plus puissante.</p>
+                            <a href="https://chat.openai.com" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
+                        </div>
+                        <!-- Outil: Gemini (Google) -->
+                        <div class="tool-card p-4 rounded-lg bg-orange-50 border-orange-600">
+                            <h4 class="text-lg font-bold text-orange-800 mb-1">Gemini (Google) <span class="text-sm font-semibold ml-2 px-3 py-1 bg-yellow-500 text-white rounded-full">Freemium</span></h4>
+                            <p class="text-sm mb-2">Modèle multimodal (texte, image, audio, vidéo). Idéal pour la synthèse complexe et l’intégration dans l’écosystème Google.</p>
+                            <a href="https://gemini.google.com" target="_blank" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">🔗 Lien</a>
                         </div>
                     </div>
 
@@ -608,5 +602,4 @@
 </body>
 </html>
 
-</html>
 
